@@ -14,7 +14,19 @@ const BudgetSchema = mongoose.Schema({
         type: Number,
         required: true
     },
-    amount: {
+    currentBalance: {
+        type: Number,
+        required: true
+    },
+    paycheck: {
+        type: Number,
+        required: true
+    },
+    expenses: {
+        type: Number,
+        required: true
+    },
+    finalBalance: {
         type: Number,
         required: true
     }

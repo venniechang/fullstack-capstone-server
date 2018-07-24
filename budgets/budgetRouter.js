@@ -31,7 +31,10 @@ budgetRouter.post('/', jsonParser, (req, res) => {
     return Budget.create({
         month: req.body.month,
         year: req.body.year,
-        amount: req.body.amount
+        currentBalance: req.body.currentBalance,
+        paycheck: req.body.paycheck,
+        expenses: req.body.expenses,
+        finalBalance: req.body.finalBalance
     })
 
     .then(entry => {
