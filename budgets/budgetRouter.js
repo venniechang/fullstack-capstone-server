@@ -63,7 +63,7 @@ budgetRouter.put('/:id', jsonParser, jwtAuth, (req, res) => {
 
 
 
-budgetRouter.delete('/:id', jwtAuth, (req, res) => {
+budgetRouter.delete('/:id', (req, res) => {
     Budget.findByIdAndRemove(req.params.id)
     .then(() => {
       res.status(204).json({message: 'Successfully Deleted Entry'});
