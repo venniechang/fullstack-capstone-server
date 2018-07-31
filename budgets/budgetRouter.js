@@ -8,15 +8,15 @@ const jsonParser = bodyParser.json();
 
 const jwtAuth = passport.authenticate('jwt', {session: false});
 
-budgetRouter.get('/', (req, res) => {
+budgetRouter.get('/', jwtAuth, (req, res) => {
     return Budget.find({
-      //  username: req.user.username
+        username: req.user.username
     })
     .then(Budget => res.json(Budget))
     //.catch(err => res.status(500).json({message: 'Internal server error'}));
 })
 
-budgetRouter.get('/:id', (req, res) => {
+budgetRouter.get('/:id', jwtAuth, (req, res) => {
     Budget.findById(req.params.id)
     .then(entry => {
         res.json(entry);
@@ -24,11 +24,12 @@ budgetRouter.get('/:id', (req, res) => {
     .catch(err => res.status(500).json({message: 'No entry found'}))
 })
 
-budgetRouter.post('/', jsonParser, (req, res) => {
+budgetRouter.post('/', jwtAuth, jsonParser, (req, res) => {
 
     //const requiredFields = ['month', 'year', 'amount'];
 
     return Budget.create({
+        username: req.user.username,
         month: req.body.month,
         year: req.body.year,
         currentBalance: req.body.currentBalance,
@@ -45,7 +46,7 @@ budgetRouter.post('/', jsonParser, (req, res) => {
 
 budgetRouter.put('/:id', jsonParser, jwtAuth, (req, res) => {
     let updatedEntry = {};
-    const updateableFields = ['name', 'date', 'story', 'typeOfEntry'];
+    const updateableFields = ['month', 'year', 'currentBalance', 'paycheck', 'expenses', 'finalBalance'];
     updateableFields.forEach( key => {
       if (key in req.body) {
         updatedEntry[key] = req.body[key];
@@ -63,7 +64,7 @@ budgetRouter.put('/:id', jsonParser, jwtAuth, (req, res) => {
 
 
 
-budgetRouter.delete('/:id', (req, res) => {
+budgetRouter.delete('/:id', jwtAuth, (req, res) => {
     Budget.findByIdAndRemove(req.params.id)
     .then(() => {
       res.status(204).json({message: 'Successfully Deleted Entry'});

@@ -6,6 +6,10 @@ mongoose.Promise = global.Promise;
 
 const BudgetSchema = mongoose.Schema({
     
+    username: {
+        type: String,
+        
+    },
     month: {
         type: Number,
         required: true
