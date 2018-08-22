@@ -30,6 +30,10 @@ const BudgetSchema = mongoose.Schema({
         type: Number,
         required: true
     },
+    expenseType: {
+        type: String,
+        required: true
+    },
     finalBalance: {
         type: Number,
         required: true

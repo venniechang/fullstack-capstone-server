@@ -35,6 +35,7 @@ budgetRouter.post('/', jwtAuth, jsonParser, (req, res) => {
         currentBalance: req.body.currentBalance,
         paycheck: req.body.paycheck,
         expenses: req.body.expenses,
+        expenseType: req.body.expenseType,
         finalBalance: req.body.finalBalance
     })
 
@@ -46,7 +47,7 @@ budgetRouter.post('/', jwtAuth, jsonParser, (req, res) => {
 
 budgetRouter.put('/:id', jsonParser, jwtAuth, (req, res) => {
     let updatedEntry = {};
-    const updateableFields = ['month', 'year', 'currentBalance', 'paycheck', 'expenses', 'finalBalance'];
+    const updateableFields = ['month', 'year', 'currentBalance', 'paycheck', 'expenses', 'expenseType', 'finalBalance'];
     updateableFields.forEach( key => {
       if (key in req.body) {
         updatedEntry[key] = req.body[key];
