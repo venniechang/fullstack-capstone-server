@@ -5,7 +5,8 @@
   "main": "server.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node server.js"
+    "start": "node server.js",
+    "build": "react-scripts build"
   },
   "repository": {
     "type": "git",
@@ -16,7 +17,7 @@
   "bugs": {
     "url": "https://github.com/venniechang/fullstack-capstone-server/issues"
   },
-  "homepage": "https://github.com/venniechang/node-capstone-project#readme",
+  "homepage": "https://github.com/venniechang/fullstack-capstone-client/#readme",
   "dependencies": {
     "bcryptjs": "^2.4.3",
     "dotenv": "^6.0.0",
