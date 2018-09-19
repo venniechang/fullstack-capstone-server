@@ -14,7 +14,7 @@ const jwtAuth = passport.authenticate('jwt', {session: false});
 // Post to register a new user
 router.post('/', jsonParser, (req, res) => {
   console.log(req.body);
-  const stringFields = ['username', 'password', 'firstName', 'lastName'];
+  const stringFields = ['username', 'password'];
   const nonStringField = stringFields.find(
     field => field in req.body && typeof req.body[field] !== 'string'
   );
@@ -28,7 +28,7 @@ router.post('/', jsonParser, (req, res) => {
     });
   }
 
-  const explicityTrimmedFields = ['username', 'password', 'firstName', 'lastName'];
+  const explicityTrimmedFields = ['username', 'password'];
   const nonTrimmedField = explicityTrimmedFields.find(
     field => req.body[field].trim() !== req.body[field]
   );
@@ -77,7 +77,7 @@ router.post('/', jsonParser, (req, res) => {
     });
   }
 
-  let {username, password, firstName = '', lastName = ''} = req.body;
+  let {username, password} = req.body;
 
   return User.find({username})
     .count()

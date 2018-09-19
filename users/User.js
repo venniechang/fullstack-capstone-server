@@ -15,22 +15,22 @@ const UserSchema = mongoose.Schema({
         required: true
     },
 
-    firstName: {
-        type: String,
-        required: true
-    },
+    // firstName: {
+    //     type: String,
+    //     required: true
+    // },
 
-    lastName: {
-        type: String,
-        required: true
-    }
+    // lastName: {
+    //     type: String,
+    //     required: true
+    // }
 });
 
 UserSchema.methods.serialize = function () {
     return {
         username: this.username || '',
-        firstName: this.firstName || '',
-        lastName: this.lastName || '',
+        // firstName: this.firstName || '',
+        // lastName: this.lastName || '',
     };
 };
 
